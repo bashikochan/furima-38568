@@ -1,24 +1,89 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル ユーザー情報
 
-Things you may want to cover:
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| nickname           | string | null: false              |
+| email              | string | null: false, unique:true |
+| encrypted_password | string | null: false              |
+| last_name          | string | null: false              |
+| first_name         | string | null: false              |
+| last_name_kana     | string | null: false              |
+| first_name_kana    | string | null: false              |
+| birth              | date   | null: false              |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_many :orders
 
-* Configuration
+## items テーブル 商品情報
 
-* Database creation
+| Column       | Type       | Options                       |
+| ------------ | ---------- | ----------------------------- |
+| item_name    | string     | null: false                   |
+| description  | text       | null: false                   |
+| categories   | int        | null: false                   |
+| condition    | int        | null: false                   |
+| shipping_fee | int        | null: false                   |
+| prefecture      | int        | null: false                   |
+| shipping_date| int        | null: false                   |
+| price        | int        | null: false                   |
+| user         | references | null: false, foreign_key: true|
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- belongs_to :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders テーブル 購入記録
 
-* Deployment instructions
+| Column       | Type       | Options                       |
+| ------------ | ---------- | ----------------------------- |
+| item_name    | string     | null: false                   |
+| user         | references | null: false, foreign_key: true|
+| orders_info  | references | null: false, foreign_key: true|
+| item         | references | null: false, foreign_key: true|
 
-* ...
+### Association
+
+- belongs_to :user
+- has_one :orders_info
+- has_one :item
+
+
+## orders_info テーブル 発送先情報
+
+| Column       | Type       | Options                       |
+| ------------ | ---------- | ----------------------------- |
+| postcode     | string     | null: false                   |
+| prefecture   | int        | null: false                   |
+| city         | string     | null: false                   |
+| block        | string     | null: false                   |
+| building     | string     |                               |
+| phone        | int        | null: false                   |
+| user         | references | null: false, foreign_key: true|
+| item         | references | null: false, foreign_key: true|
+| order        | references | null: false, foreign_key: true|
+
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- belongs_to :order
+
+## comments テーブル
+
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| content   | text       | null: false                    |
+| item      | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
