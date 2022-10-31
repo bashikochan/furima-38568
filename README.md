@@ -16,22 +16,21 @@
 ### Association
 
 - has_many :items
-- has_many :comments
 - has_many :orders
 
 ## items テーブル 商品情報
 
-| Column       | Type       | Options                       |
-| ------------ | ---------- | ----------------------------- |
-| item_name    | string     | null: false                   |
-| description  | text       | null: false                   |
-| categories   | integer    | null: false                   |
-| condition    | integer    | null: false                   |
-| shipping_fee | integer    | null: false                   |
-| prefectures  | integer    | null: false                   |
-| shipping_date| integer    | null: false                   |
-| price        | integer    | null: false                   |
-| user         | references | null: false, foreign_key: true|
+| Column          | Type       | Options                       |
+| --------------- | ---------- | ----------------------------- |
+| item_name       | string     | null: false                   |
+| description     | text       | null: false                   |
+| categories_id   | integer    | null: false                   |
+| condition_id    | integer    | null: false                   |
+| shipping_fee_id | integer    | null: false                   |
+| prefectures_id  | integer    | null: false                   |
+| shipping_date_id| integer    | null: false                   |
+| price           | integer    | null: false                   |
+| user            | references | null: false, foreign_key: true|
 
 ### Association
 
@@ -54,35 +53,23 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :orders_infos
 
 
-## orders_info テーブル 発送先情報
+## orders_infos テーブル 発送先情報
 
-| Column       | Type       | Options                       |
-| ------------ | ---------- | ----------------------------- |
-| postcode     | string     | null: false                   |
-| prefectures  | integer    | null: false                   |
-| city         | string     | null: false                   |
-| block        | string     | null: false                   |
-| building     | string     |                               |
-| phone        | string     | null: false                   |
-| order        | references | null: false, foreign_key: true|
+| Column          | Type       | Options                       |
+| --------------- | ---------- | ----------------------------- |
+| postcode        | string     | null: false                   |
+| prefectures_id  | integer    | null: false                   |
+| city            | string     | null: false                   |
+| block           | string     | null: false                   |
+| building        | string     |                               |
+| phone           | string     | null: false                   |
+| order           | references | null: false, foreign_key: true|
 
 
 ### Association
 
  - has_one_active_hash :prefectures
- - has_one :order
-
-## comments テーブル
-
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| content   | text       | null: false                    |
-| item      | references | null: false, foreign_key: true |
-| user      | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :item
+ - belongs_to :order
