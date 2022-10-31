@@ -53,7 +53,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :orders_infos
+- has_one :orders_info
 
 
 ## orders_infos テーブル 発送先情報
