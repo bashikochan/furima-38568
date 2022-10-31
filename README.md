@@ -25,33 +25,35 @@
 | ------------ | ---------- | ----------------------------- |
 | item_name    | string     | null: false                   |
 | description  | text       | null: false                   |
-| categories   | int        | null: false                   |
-| condition    | int        | null: false                   |
-| shipping_fee | int        | null: false                   |
-| prefecture      | int        | null: false                   |
-| shipping_date| int        | null: false                   |
-| price        | int        | null: false                   |
+| categories   | integer    | null: false                   |
+| condition    | integer    | null: false                   |
+| shipping_fee | integer    | null: false                   |
+| prefectures  | integer    | null: false                   |
+| shipping_date| integer    | null: false                   |
+| price        | integer    | null: false                   |
 | user         | references | null: false, foreign_key: true|
 
 ### Association
 
 - belongs_to :user
-- belongs_to :order
+- has_one :order
+- belongs_to_active_hash :categories
+- belongs_to_active_hash :condition
+- belongs_to_active_hash :shipping_fee
+- belongs_to_active_hash :prefectures
+- belongs_to_active_hash :shipping_date
 
 ## orders テーブル 購入記録
 
 | Column       | Type       | Options                       |
 | ------------ | ---------- | ----------------------------- |
-| item_name    | string     | null: false                   |
 | user         | references | null: false, foreign_key: true|
-| orders_info  | references | null: false, foreign_key: true|
 | item         | references | null: false, foreign_key: true|
 
 ### Association
 
 - belongs_to :user
-- has_one :orders_info
-- has_one :item
+- belongs_to :item
 
 
 ## orders_info テーブル 発送先情報
@@ -59,21 +61,18 @@
 | Column       | Type       | Options                       |
 | ------------ | ---------- | ----------------------------- |
 | postcode     | string     | null: false                   |
-| prefecture   | int        | null: false                   |
+| prefectures  | integer    | null: false                   |
 | city         | string     | null: false                   |
 | block        | string     | null: false                   |
 | building     | string     |                               |
-| phone        | int        | null: false                   |
-| user         | references | null: false, foreign_key: true|
-| item         | references | null: false, foreign_key: true|
+| phone        | string     | null: false                   |
 | order        | references | null: false, foreign_key: true|
 
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- belongs_to :order
+ - has_one_active_hash :prefectures
+ - has_one :order
 
 ## comments テーブル
 
