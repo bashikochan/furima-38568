@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   validates :item_name, presence: true
   validates :description, presence: true
   # ジャンル選択が「ーーー」の時は保存できないようにする
-  validates :categories_id, numericality: { other_than: 1, message: "can't be blank"} 
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :condition_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :shipping_fee_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank"} 

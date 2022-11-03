@@ -24,7 +24,7 @@
 | --------------- | ---------- | ----------------------------- |
 | item_name       | string     | null: false                   |
 | description     | text       | null: false                   |
-| categories_id   | integer    | null: false                   |
+| category_id   | integer    | null: false                   |
 | condition_id    | integer    | null: false                   |
 | shipping_fee_id | integer    | null: false                   |
 | prefectures_id  | integer    | null: false                   |
@@ -36,7 +36,7 @@
 
 - belongs_to :user
 - has_one :order
-- belongs_to_active_hash :categories
+- belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :shipping_fee
 - belongs_to_active_hash :prefectures
