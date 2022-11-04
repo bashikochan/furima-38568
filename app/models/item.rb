@@ -18,5 +18,5 @@ class Item < ApplicationRecord
   validates :shipping_fee_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :shipping_date_id, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :price, presence: true
+  validates :price, presence: { message: "can't be blank" }, numericality: {only_integer: true, greater_than_or_equal_to:300, less_than_or_equal_to: 9999999,message:"Price is out of setting range"}
 end
