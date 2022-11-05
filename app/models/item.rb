@@ -18,11 +18,9 @@ class Item < ApplicationRecord
   validates :shipping_fee_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank"} 
   validates :shipping_date_id, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :price, presence: { message: "can't be blank"}
-
-  VALID_PRICEL_HALF = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-  validates :price, numericality: { with: VALID_PRICEL_HALF, message: "is invalid.Input half-width characters" }
-  validates :price, numericality: {only_integer: true, greater_than_or_equal_to:300, less_than_or_equal_to: 9999999,message:"is out of setting range"}
+  validates :price, presence: true
+  validates :price, numericality: { only_integer: true, message: 'is invalid.Input half-width characters'}
+  validates :price, numericality: { greater_than_or_equal_to:300, less_than_or_equal_to: 9999999,message: "is out of setting range"}
 end
 
 #1つのバリデーションヘルパーに、messageオプションは一つまで
