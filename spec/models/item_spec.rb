@@ -35,11 +35,11 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it 'shipping_date_idが空でなければ登録できる' do
-        @item.shipping_date_id= '2'
+        @item.shipping_date_id = '2'
         expect(@item).to be_valid
       end
       it 'priceが空でなければ登録できる' do
-        @item.price = 120000
+        @item.price = 120_000
         expect(@item).to be_valid
       end
     end
@@ -103,7 +103,7 @@ RSpec.describe Item, type: :model do
         @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is out of setting range')
-      end      
+      end
       it 'userが紐付いていない場合は登録できない' do
         @item.user = nil
         @item.valid?
