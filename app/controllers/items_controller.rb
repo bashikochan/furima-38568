@@ -22,6 +22,13 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    unless @item.user.id == current_user.id
+      redirect_to action: :index
+    end
+  end
+
   private
 
   def item_params
