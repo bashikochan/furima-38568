@@ -7,12 +7,11 @@ class OrderForm
     validates :user_id
     validates :item_id
     #orders_infoモデルのバリデーション
-    validates :postcode
-    validates :prefectures_id
-    validates :city
-    validates :block
-    validates :building
-    validates :phone
+    validates :postcode, presence: true, format: { with: /\A^[0-9]{3}-[0-9]{4}\z/, message: "is invalid.Enter it as follows(e.g. 123-4567)" }
+    validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :city, presence: true
+    validates :block, presence: true
+    validates :phone, format: { with: /\A[0-9]{9,10}\z/, message: "is invalid.Input only number" }
   end
 
   def save
