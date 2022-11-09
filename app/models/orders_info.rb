@@ -1,4 +1,5 @@
 class OrdersInfo < ApplicationRecord
-  has_one_active_hash :prefectures
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefectures
   belongs_to :order
 end

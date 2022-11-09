@@ -1,16 +1,22 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :nickname, :email, :password, :last_name, :first_name, :last_name_kana, :first_name_kana, :birth
+  attr_accessor :user_id, :item_id, :postcode, :prefectures_id, :city, :block, :building, :phone
 
   with_options presence: true do
-    validates :user
-    validates :item
+    #orderモデルのバリデーション
+    validates :user_id
+    validates :item_id
+    #orders_infoモデルのバリデーション
+    validates :postcode
+    validates :prefectures_id
+    validates :city
+    validates :block
+    validates :building
+    validates :phone
   end
 
   def save
-    user = User.create(nickname: nickname, email: email, password: password, last_name: last_name, first_name: first_name, last_name_kana: last_name_kana, first_name_kana: first_name_kana, birth: birth)
-    item = Item.create(item_name: item_name, description: description, category_id: category_id, condition_id: condition_id, shipping_fee_id: shipping_fee_id,
-      prefectures_id: prefectures_id, shipping_date_id: shipping_date_id, price: price, user_id: user_id)
-    # 各テーブルにデータを保存する処理を書く
+    order = Order.create(item_id: item_id, user_id: user_id)
+    OrdersInfo.create(order_id: order.id, postcode: postcode, prefectures_id: prefectures_id, city: city, block: block, building: building, phone: phone)
   end
 end
