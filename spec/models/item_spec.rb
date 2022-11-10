@@ -30,8 +30,8 @@ RSpec.describe Item, type: :model do
         @item.shipping_fee_id = '2'
         expect(@item).to be_valid
       end
-      it 'prefectures_idが空でなければ登録できる' do
-        @item.prefectures_id = '2'
+      it 'prefecture_idが空でなければ登録できる' do
+        @item.prefecture_id = '2'
         expect(@item).to be_valid
       end
       it 'shipping_date_idが空でなければ登録できる' do
@@ -74,10 +74,10 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping fee can't be blank"
       end
-      it 'prefectures_idが未選択では登録できない' do
-        @item.prefectures_id = '1'
+      it 'prefecture_idが未選択では登録できない' do
+        @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Prefectures can't be blank"
+        expect(@item.errors.full_messages).to include "Prefecture can't be blank"
       end
       it ' shipping_date_idが未選択では登録できない' do
         @item.shipping_date_id = '1'

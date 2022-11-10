@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to action: :index unless @item.user.id == current_user.id
+    redirect_to action: :index unless @item.user.id == current_user.id && @item.order.nil?
   end
 
   def update
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.user == current_user
-      set_item.destroy
+      @item.destroy
       redirect_to action: :index
     else
       redirect_to action: :index
@@ -47,10 +47,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :item_name, :description, :category_id, :condition_id, :shipping_fee_id,
-                                 :prefectures_id, :shipping_date_id, :price).merge(user_id: current_user.id)
+                                 :prefecture_id, :shipping_date_id, :price).merge(user_id: current_user.id)
   end
 
   def set_item
     @item = Item.find(params[:id])
   end
+
 end
