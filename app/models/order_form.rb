@@ -11,7 +11,9 @@ class OrderForm
     validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, presence: true
     validates :block, presence: true
-    validates :phone, format: { with: /\A[0-9]{9,10}\z/, message: "is invalid.Input only number" }
+    validates :phone, numericality: { only_integer: true, message: 'is invalid.Input only number' }
+    validates :phone, length: { maximum: 11, message: "is too long" }
+    validates :phone, length: { minimum: 10, message: "is too short" }
   end
 
   def save
