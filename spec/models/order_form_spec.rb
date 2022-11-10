@@ -27,7 +27,7 @@ RSpec.describe OrderForm, type: :model do
       it 'postcodeが「3桁ハイフン4桁」の半角文字列ではないとき登録できない' do
         @order_form.postcode = '1234567'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Postcode is invalid.Enter it as follows(e.g. 123-4567)"
+        expect(@order_form.errors.full_messages).to include 'Postcode is invalid.Enter it as follows(e.g. 123-4567)'
       end
       it 'prefectures_idが未選択では登録できない' do
         @order_form.prefectures_id = '1'
@@ -52,17 +52,17 @@ RSpec.describe OrderForm, type: :model do
       it 'phoneが10桁未満では登録できない' do
         @order_form.phone = '012345678'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Phone is too short"
+        expect(@order_form.errors.full_messages).to include 'Phone is too short'
       end
       it 'phoneが12桁以上では登録できない' do
         @order_form.phone = '012345678901'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Phone is too long"
+        expect(@order_form.errors.full_messages).to include 'Phone is too long'
       end
       it 'phoneが半角数値でなければ登録できない' do
         @order_form.phone = 'あああ-ああああああ'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Phone is invalid.Input only number"
+        expect(@order_form.errors.full_messages).to include 'Phone is invalid.Input only number'
       end
       it 'tokenが空では登録できない' do
         @order_form.token = ''
