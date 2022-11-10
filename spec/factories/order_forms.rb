@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_form do
     postcode { '123-4567' }
-    prefectures_id { 2 }
+    prefecture_id { 2 }
     city { '横浜市' }
     block { '1-1' }
     building { '横浜ハイツ' }

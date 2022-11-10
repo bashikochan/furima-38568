@@ -29,10 +29,10 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include 'Postcode is invalid.Enter it as follows(e.g. 123-4567)'
       end
-      it 'prefectures_idが未選択では登録できない' do
-        @order_form.prefectures_id = '1'
+      it 'prefecture_idが未選択では登録できない' do
+        @order_form.prefecture_id = '1'
         @order_form.valid?
-        expect(@order_form.errors.full_messages).to include "Prefectures can't be blank"
+        expect(@order_form.errors.full_messages).to include "Prefecture can't be blank"
       end
       it 'cityが空では登録できない' do
         @order_form.city = ''
@@ -68,6 +68,16 @@ RSpec.describe OrderForm, type: :model do
         @order_form.token = ''
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include "Token can't be blank"
+      end
+      it 'user_idが空では登録できない' do
+        @order_form.user_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できない' do
+        @order_form.item_id = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

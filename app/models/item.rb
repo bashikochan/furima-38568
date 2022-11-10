@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :condition
   belongs_to :shipping_fee
-  belongs_to :prefectures
+  belongs_to :prefecture
   belongs_to :shipping_date
 
   validates :image, presence: true
@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_fee_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefectures_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_date_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :price, presence: true
   validates :price, numericality: { only_integer: true, message: 'is invalid.Input half-width characters' }

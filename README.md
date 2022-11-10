@@ -27,7 +27,7 @@
 | category_id   | integer    | null: false                   |
 | condition_id    | integer    | null: false                   |
 | shipping_fee_id | integer    | null: false                   |
-| prefectures_id  | integer    | null: false                   |
+| prefecture_id  | integer    | null: false                   |
 | shipping_date_id| integer    | null: false                   |
 | price           | integer    | null: false                   |
 | user            | references | null: false, foreign_key: true|
@@ -39,7 +39,7 @@
 - belongs_to_active_hash :category
 - belongs_to_active_hash :condition
 - belongs_to_active_hash :shipping_fee
-- belongs_to_active_hash :prefectures
+- belongs_to_active_hash :prefecture
 - belongs_to_active_hash :shipping_date
 
 ## orders テーブル 購入記録
@@ -61,7 +61,7 @@
 | Column          | Type       | Options                       |
 | --------------- | ---------- | ----------------------------- |
 | postcode        | string     | null: false                   |
-| prefectures_id  | integer    | null: false                   |
+| prefecture_id  | integer    | null: false                   |
 | city            | string     | null: false                   |
 | block           | string     | null: false                   |
 | building        | string     |                               |
@@ -71,5 +71,5 @@
 
 ### Association
 
- - has_one_active_hash :prefectures
+ - has_one_active_hash :prefecture
  - belongs_to :order

@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
 
   def index
     @order_form = OrderForm.new
-    redirect_to root_path if current_user == @item.user
   end
 
   def create
@@ -21,7 +20,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_form).permit(:postcode, :prefectures_id, :city, :block, :building, :phone).merge(token: params[:token],
+    params.require(:order_form).permit(:postcode, :prefecture_id, :city, :block, :building, :phone).merge(token: params[:token],
                                                                                                            user_id: current_user.id, item_id: params[:item_id])
   end
 
