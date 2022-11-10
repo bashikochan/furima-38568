@@ -1,7 +1,6 @@
 class OrderForm
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postcode, :prefectures_id, :city, :block, :building, :phone
-
+  attr_accessor :user_id, :item_id, :postcode, :prefectures_id, :city, :block, :building, :phone, :token
   with_options presence: true do
     #orderモデルのバリデーション
     validates :user_id
@@ -14,6 +13,7 @@ class OrderForm
     validates :phone, numericality: { only_integer: true, message: 'is invalid.Input only number' }
     validates :phone, length: { maximum: 11, message: "is too long" }
     validates :phone, length: { minimum: 10, message: "is too short" }
+    validates :token, presence: true
   end
 
   def save
