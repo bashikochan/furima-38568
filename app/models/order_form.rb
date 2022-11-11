@@ -12,9 +12,10 @@ class OrderForm
     validates :city
     validates :block
     validates :phone, numericality: { only_integer: true, message: 'is invalid.Input only number' }
-    validates :phone, length: { maximum: 11, message: 'is too long' }
-    validates :phone, length: { minimum: 10, message: 'is too short' }
+    validates :phone, allow_blank: true, length: { maximum: 11, message: 'is too long' }
+    validates :phone, allow_blank: true, length: { minimum: 10, message: 'is too short' }
     validates :token
+
   end
 
   def save
@@ -22,4 +23,5 @@ class OrderForm
     OrdersInfo.create(order_id: order.id, postcode: postcode, prefecture_id: prefecture_id, city: city, block: block,
                       building: building, phone: phone)
   end
+
 end
