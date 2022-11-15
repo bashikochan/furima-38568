@@ -13,7 +13,7 @@ default: &default
   adapter: mysql2
   database: furima-38568_production
   username: root
-  password: <%= ENV['skz143'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
 
 development:
